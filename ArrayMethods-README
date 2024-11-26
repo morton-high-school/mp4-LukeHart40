@@ -24,6 +24,7 @@ public static boolean[] arrayLocalMin(int[] a)
   neighbors. arrayLocalMin returns an array of booleans where the value at
   each index is true if the value in the original array is a local minimum and
   false otherwise.
+  *THE ENDS OF THE ARRAY COUNT AS LOCAL MIN AND MAX*
 
 public static boolean[] arrayLocalMax(int[] a)
   arrayLocalMax determines the locations of any local maximums in the array. A
@@ -31,6 +32,7 @@ public static boolean[] arrayLocalMax(int[] a)
   neighbors. arrayLocalMax returns an array of booleans where the value at
   each index is true if the value in the original array is a local maximum and
   false otherwise.
+  *THE ENDS OF THE ARRAY COUNT AS LOCAL MIN AND MAX*
 
 public static int arrayMode(int[] a)
   arrayMode finds the mode of the array. If multiple modes occur, then arrayMode
