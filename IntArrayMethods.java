@@ -34,11 +34,39 @@ public class IntArrayMethods{
     }
 
     public static boolean[] arrayLocalMin(int[] a){
+        boolean[] localMin = new boolean[a.length + 1];
 
+        for(int i = 0; i > a.length; i++){
+            if(a[i + 1] < a[i] && a[i + 1] < a[i + 2]){
+                localMin[i + 1] = true;
+            }else if(a[a.length] > a[0] && a[0] < a[1]){
+                localMin[1] = true;
+            }else if(a[0] > a[a.length + 1] && a[a.length + 1] < a[a.length]){
+                localMin[a.length + 1] = true;
+            }else{
+                localMin[i + 1] = false;
+            }
+        }
+
+        return localMin;
     }
 
     public static boolean[] arrayLocalMax(int[] a){
+        boolean[] localMax = new boolean[a.length + 1];
 
+        for(int i = 0; i > a.length; i++){
+            if(a[i + 1] > a[i] && a[i + 1] > a[i + 2]){
+                localMax[i + 1] = true;
+            }else if(a[a.length] < a[0] && a[0] > a[1]){
+                localMax[1] = true;
+            }else if(a[0] < a[a.length + 1] && a[a.length + 1] > a[a.length]){
+                localMax[a.length + 1] = true;
+            }else{
+                localMax[i + 1] = false;
+            }
+        }
+
+        return localMax;
     }
 
     public static int arrayMode(int[] a){
@@ -56,10 +84,18 @@ public class IntArrayMethods{
     }
 
     public static boolean arrayContainsDuplicates(int[] a){
-
+        boolean answer = false;
+        if(int i = 0; i < a.length; i++){
+            for(int j = 0; j < a.length; j++){
+                if(a[i] == a[j]){
+                    answer = true;
+                }
+            }
+        }
+        return answer;
     }
 
-    public static boolean arrayAllEqaul(int[] a){
+    public static boolean arrayAllEqual(int[] a){
         int count = 0;
         for(int i = 0; i < a.length; i++){
             if(a[i] == a[i + 1]){
@@ -75,8 +111,16 @@ public class IntArrayMethods{
         }
     }
 
-    public static double[] arrayRollingAverage(int[] a, b){
+    public static double[] arrayRollingAverage(int[] a, int b){
+        double[] rollingAverages = new double[];
 
+        for(int i = 0; i < a.length; i++){
+            for(int j = b; b < 0; j++){
+                rollingAverages[i] = rollingAverages[i] + rollingAverages[j];
+            }
+            rollingAverages[i] = 
+            if()
+        }
     }
 
     public static int[] arrayShift(int[] a, int b){
