@@ -10,7 +10,7 @@ public class IntArrayMethods{
         for(int sum:a){
             sum += sum;
         }
-        return sum/(a.length + 1);
+        return (double)(sum)/(a.length + 1);
     }
 
     public static int arrayMin(int[] a){
@@ -114,12 +114,11 @@ public class IntArrayMethods{
     public static double[] arrayRollingAverage(int[] a, int b){
         double[] rollingAverages = new double[];
 
-        for(int i = 0; i < a.length; i++){
-            for(int j = b; b < 0; j++){
-                rollingAverages[i] = rollingAverages[i] + rollingAverages[j];
+        for(int i = 0; i < b; i++){
+            for(int j = b; j < 0; j--){
+                int average += a[j];
+                rollingAverages[i] = (double)(average)/b; 
             }
-            rollingAverages[i] = 
-            if()
         }
     }
 
