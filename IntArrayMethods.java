@@ -1,22 +1,26 @@
 public class IntArrayMethods{
     public static int arraySum(int[] a){
-        for(int sum:a){
-            sum += sum;
+        int sum = 0;
+        for(int value:a){
+            sum += value;
         }
         return sum;
     }
 
     public static double arrayMean(int[] a){
-        for(int sum:a){
-            sum += sum;
+        double sum = 0;
+        int count = 0;
+        for(int value:a){
+            sum += (double)(value);
+            count++;
         }
-        return (double)(sum)/(a.length + 1);
+        return (sum)/(count);
     }
 
     public static int arrayMin(int[] a){
+        int min = a[0];
         for(int value:a){
-            int min = a[1];
-            if(min < value){
+            if(min > value){
                 min = value;
             }
         }
@@ -24,9 +28,9 @@ public class IntArrayMethods{
     }
 
     public static int arrayMax(int[] a){
+        int max = a[0];
         for(int value:a){
-            int max = a[1];
-            if(max > value){
+            if(max < value){
                 max = value;
             }
         }
@@ -36,15 +40,23 @@ public class IntArrayMethods{
     public static boolean[] arrayLocalMin(int[] a){
         boolean[] localMin = new boolean[a.length + 1];
 
-        for(int i = 0; i > a.length; i++){
-            if(a[i + 1] < a[i] && a[i + 1] < a[i + 2]){
-                localMin[i + 1] = true;
-            }else if(a[a.length] > a[0] && a[0] < a[1]){
-                localMin[1] = true;
-            }else if(a[0] > a[a.length + 1] && a[a.length + 1] < a[a.length]){
-                localMin[a.length + 1] = true;
+        if(a[a.length - 1] > a[0] && a[0] < a[1]){
+            localMin[0] = true;
+        }else{
+            localMin[0] = false;
+        }
+
+        if(a[0] > a[a.length - 1] && a[a.length - 1] < a[a.length - 2]){
+            localMin[a.length - 1] = true;
+        }else{
+            localMin[a.length - 1] = false;
+        }
+
+        for(int i = 1; i < a.length - 2; i++){
+            if(a[i - 1] > a[i] && a[i] < a[i + 1]){
+                localMin[i] = true;
             }else{
-                localMin[i + 1] = false;
+                localMin[i] = false;
             }
         }
 
@@ -54,15 +66,23 @@ public class IntArrayMethods{
     public static boolean[] arrayLocalMax(int[] a){
         boolean[] localMax = new boolean[a.length + 1];
 
-        for(int i = 0; i > a.length; i++){
-            if(a[i + 1] > a[i] && a[i + 1] > a[i + 2]){
-                localMax[i + 1] = true;
-            }else if(a[a.length] < a[0] && a[0] > a[1]){
-                localMax[1] = true;
-            }else if(a[0] < a[a.length + 1] && a[a.length + 1] > a[a.length]){
-                localMax[a.length + 1] = true;
+        if(a[a.length - 1] < a[0] && a[0] > a[1]){
+            localMax[0] = true;
+        }else{
+            localMax[0] = false;
+        }
+
+        if(a[0] < a[a.length - 1] && a[a.length - 1] > a[a.length - 2]){
+            localMax[a.length - 1] = true;
+        }else{
+            localMax[a.length - 1] = false;
+        }
+
+        for(int i = 1; i < a.length - 2; i++){
+            if(a[i - 1] < a[i] && a[i] > a[i + 1]){
+                localMax[i] = true;
             }else{
-                localMax[i + 1] = false;
+                localMax[i] = false;
             }
         }
 
@@ -70,7 +90,27 @@ public class IntArrayMethods{
     }
 
     public static int arrayMode(int[] a){
+        if(a.length == 1){
+            return a[0];
+        }
 
+        int maxValue = 0;
+        int maxCount = 0;
+
+        for(int i = 0; i < a.length - 1; i++){
+            int count = 0;
+            for(int j = 1; j < a.length; j++){
+                if(a[i] == a[j]){
+                    count++;
+                }
+                if(count > maxCount){
+                    maxCount = count;
+                    maxValue = a[i];
+                }
+            }
+        }
+        return maxValue;
+        
     }
 
     public static int arrayCount(int[] a, int b){
@@ -85,26 +125,31 @@ public class IntArrayMethods{
 
     public static boolean arrayContainsDuplicates(int[] a){
         boolean answer = false;
-        if(int i = 0; i < a.length; i++){
-            for(int j = 0; j < a.length; j++){
+
+        for(int i = 0; i <= a.length - 1; i++){
+            for(int j = 0; j <= a.length - 1; j++){
                 if(a[i] == a[j]){
                     answer = true;
                 }
             }
         }
+        if(a.length == 1){
+            answer = false;
+        }
+
         return answer;
     }
 
     public static boolean arrayAllEqual(int[] a){
         int count = 0;
-        for(int i = 0; i < a.length; i++){
+        for(int i = 0; i < a.length - 1; i++){
             if(a[i] == a[i + 1]){
                 count++;
             }else{
                 count--;
             }
         }
-        if(count == a.length + 1){
+        if(count == a.length - 1){
             return true;
         }else{
             return false;
@@ -112,24 +157,38 @@ public class IntArrayMethods{
     }
 
     public static double[] arrayRollingAverage(int[] a, int b){
-        double[] rollingAverages = new double[];
+        double[] rollingAverages = new double[a.length + 1];
 
-        for(int i = 0; i < b; i++){
+        for(int i = 0; i < a.length; i++){
+            int total = 0;
             for(int j = b; j < 0; j--){
-                int average += a[j];
-                rollingAverages[i] = (double)(average)/b; 
+                total = a[i - j];
+                if(total < 0){
+                    total = a[i];
+                }
             }
         }
+        return rollingAverages;
     }
 
     public static int[] arrayShift(int[] a, int b){
+        int[] shift = new int[a.length];
+        if(b >= a.length - 1){
+            return a;
+        }
 
+        for(int i = 0; i < a.length; i++){
+            int position = (i + b) % a.length;
+            shift[position] = a[i];
+        }
+        return shift;
     }
 
     public static int[] arrayReverse(int[] a){
-        int[] reverse = new int[];
-        for(int i = 0; i<a.length; i++){
-            reverse[i] = a[a.length - i];
+        int[] reverse = new int[a.length + 1];
+
+        for(int i = 0; i < a.length; i++){
+            reverse[i] = a[(a.length - 1) - i];
         }
         return reverse;
     }
