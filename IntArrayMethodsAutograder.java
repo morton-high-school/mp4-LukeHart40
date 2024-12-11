@@ -208,11 +208,9 @@ public class IntArrayMethodsAutograder{
     if(!a){
       System.out.println("Failed arrayRollingAverage test 1.");
     }
-    System.out.println(t1Returned);
     if(!b){
       System.out.println("Failed arrayRollingAverage test 2.");
     }
-    System.out.println(t2Returned);
     if(a&&b){
       System.out.println("All arrayRollingAverage tests passed.");
     }

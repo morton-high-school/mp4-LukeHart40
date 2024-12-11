@@ -157,17 +157,22 @@ public class IntArrayMethods{
     }
 
     public static double[] arrayRollingAverage(int[] a, int b){
-        double[] rollingAverages = new double[a.length + 1];
+        double[] rollingAverages = new double[a.length];
+        int sum = 0;
 
-        for(int i = 0; i < a.length; i++){
-            int total = 0;
-            for(int j = b; j < 0; j--){
-                total = a[i - j];
-                if(total < 0){
-                    total = a[i];
-                }
-            }
+        for(int i = 0; i < b; i++){
+            sum += a[i];
+            rollingAverages[i] = (double)(sum)/(i + 1);
         }
+
+        for(int j = b; j <= a.length - 1; j++){
+            sum = 0;
+            for(int k = 0; k < b; k++){
+                sum += a[j - k];
+            }
+            rollingAverages[j] = (double)(sum)/b;
+        }
+        
         return rollingAverages;
     }
 
